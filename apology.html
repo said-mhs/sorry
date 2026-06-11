@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm sorry</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #fdf2f8;
+  }
+  .card {
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  h2 { margin-bottom: 0.5rem; }
+  p.sub { color: #777; margin-bottom: 1.5rem; }
+
+  .btn-row {
+    position: relative;
+    height: 60px;
+    margin-bottom: 0.5rem;
+  }
+  button {
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+  }
+  #acceptBtn {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #6ee7b7;
+  }
+  #declineBtn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #f3f4f6;
+    transition: left 0.2s, top 0.2s;
+  }
+
+  #step2 p {
+    font-size: 20px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h2>I'm sorry 💛</h2>
+    <p class="sub">I know I messed up, and im rly sorry again .</p>
+
+    <div id="step1">
+      <div class="btn-row">
+        <button id="acceptBtn">Apology accepted 💕</button>
+        <button id="declineBtn">Not accepted :(</button>
+      </div>
+    </div>
+
+    <div id="step2" style="display:none">
+      <p>Thank you 🥹 I'll make it up to you.</p>
+    </div>
+  </div>
+
+<script>
+const declineBtn = document.getElementById('declineBtn');
+const container = declineBtn.parentElement;
+
+function moveDecline(){
+  const maxX = container.clientWidth - declineBtn.offsetWidth;
+  const maxY = 200;
+  const x = Math.random() * Math.max(maxX,0);
+  const y = Math.random() * maxY;
+  declineBtn.style.left = x + 'px';
+  declineBtn.style.top = y + 'px';
+}
+
+declineBtn.addEventListener('mouseenter', moveDecline);
+declineBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); moveDecline(); });
+declineBtn.addEventListener('click', (e)=>{ e.preventDefault(); moveDecline(); });
+
+document.getElementById('acceptBtn').addEventListener('click', () => {
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('step2').style.display = 'block';
+});
+</script>
+</body>
+</html>
